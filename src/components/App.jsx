@@ -14,8 +14,6 @@ class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   handleAddContact = (name, number) => {
@@ -35,34 +33,6 @@ class App extends Component {
     this.setState((prevState) => ({
       contacts: [...prevState.contacts, contact],
     }));
-  };
-
-  handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-
-    const { name, number } = this.state;
-
-    if (this.isContactNameDuplicate(name)) {
-      alert(`${name} is already in contacts.`);
-      return;
-    }
-
-    const newContact = { id: nanoid(), name, number };
-    this.setState((prevState) => ({
-      contacts: [...prevState.contacts, newContact],
-      name: '',
-      number: '',
-    }));
-  };
-
-  isContactNameDuplicate = (name) => {
-    const { contacts } = this.state;
-    return contacts.some((contact) => contact.name.toLowerCase() === name.toLowerCase());
   };
 
   handleFilterChange = (event) => {
